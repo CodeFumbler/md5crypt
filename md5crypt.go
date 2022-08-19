@@ -45,7 +45,7 @@ func main() {
 		s := strings.LastIndex(salt,"$")
 		if s < 0 && len(salt) > s+1 {
 			fmt.Printf("error: invalid md5crypt string\n")
-			fmt.Printf("usage: %v password salt|md5crypt\n", os.Args[0])
+			fmt.Printf(usageFmt, os.Args[0])
 			os.Exit(3)
 			return
 		}
@@ -55,14 +55,14 @@ func main() {
 	
 	if len(salt) > 8 {
 		fmt.Printf("error: salt must be less than 8 characters\n")
-		fmt.Printf("usage: %v password salt|md5crypt\n", os.Args[0])
+		fmt.Printf(usageFmt, os.Args[0])
 		os.Exit(4)
 		return
 	}
 	
 	for strings.Count(string(salt), "$") != 0 {
 		fmt.Printf("error: salt can not contain $\n")
-		fmt.Printf("usage: %v password salt|md5crypt\n", os.Args[0])
+		fmt.Printf(usageFmt, os.Args[0])
 		os.Exit(5)
 		return
 	}
